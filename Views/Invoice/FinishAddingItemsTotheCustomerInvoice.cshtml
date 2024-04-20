@@ -1,0 +1,170 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model WebApplication1.ViewModels.InvoiceViewModel
+
+@{
+    ViewData["Title"] = "CreateInvoiceForCustomer";
+}
+
+<dl>
+    <dt></dt>
+    <dd>
+    </dd>  
+</dl>
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-5 m-1">
+            <dl>
+                <dt class ="fs-5">
+                    @localizer["customername"]</dt>
+                    <dd class ="fs-3">
+                        @Model.CustomerName
+                </dd>
+            </dl>
+       </div>
+        <div class="col-5 m-1">
+            <dl>
+                <dt class="fs-5">
+                    @localizer["cashier"]
+                </dt>
+                <dd class="fs-3">
+                    @Model.ApplicationUserName
+                </dd>
+            </dl>
+       </div>
+    </div>
+   
+
+    <div class="row">
+        <h3>@localizer["items"]</h3>
+     @foreach (var item in (List<InvoiceItem>)ViewBag.Inviceitems)
+        {
+
+            <div class="mb-3 border border-primary-subtle p-2">
+                <div class="row justify-content-around ">
+
+                    <div class="col-md-5 col-sm-12">
+                        <dl>
+                            <dt>
+                                @localizer["itemname"]
+                            </dt>
+                            <dd>
+                                @localizer["n" + item.categoryItem.ItemName + item.categoryItem.Id]
+                            </dd>
+                        </dl>
+
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <dl>
+                            <dt >
+                                @localizer["totalprice"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.TotalPrice)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="row justify-content-around  align-items-end">
+                   
+                    <div class="col-md-5 col-sm-12">
+                        <dl>
+                            <dt>
+                                @localizer["amount"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div claee="col-md-5 col-sm-12">
+                        <dl>
+                            <dt >
+                                @localizer["discount"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.Discount)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row justify-content-between mt-1">
+      
+            <form asp-action="AddDiscountForCustomrInvoice" class="d-flex align-items-end justify-content-between">
+            <div class="form-group col-5">
+                <label class="fs-5">@localizer["adddiscountforinvoice"] </label>
+                <input asp-for="Discount" class="form-control" />
+                </div>
+                <div class="form-group col-5 ">
+                    <input type="submit" value=@localizer["applaydiscount"] class="btn btn-outline-info col-12">
+                </div>
+            </form>
+      
+        
+    </div>
+    <div class="row mt-2">
+        <dl>
+            <dt class="fs-5">
+                @localizer["totalpricewithoutdiscount"]
+            </dt>
+            <dd class="fs-4">
+                @Model.TotalPriceWithoutDiscount
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl>
+            <dt class="fs-5">
+                @localizer["discount"]
+            </dt>
+            <dd class="fs-4">
+                @Model.Discount
+            </dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl>
+            <dt class="fs-5">
+                @localizer["totalpriceafterdiscount"]
+            </dt>
+            <dd class="fs-4">
+                @Model.TotalPriceAfterDiscount
+            </dd>
+        </dl>
+    </div>
+   <br />
+    <div class="row justify-content-between align-items-start mt-2">
+
+        <div class="col-3">
+            <a asp-controller="InvoiceItem" asp-action="CreateNewInvoiceItem" class="btn btn-outline-primary col-12">@localizer["additemstoinvoice"]</a>
+        </div>
+        <div class="col-3 ">
+            <a asp-controller="InvoiceItem" asp-action="CreateNewInvoiceItem" class="btn btn-outline-dark col-12">@localizer["edititemsofinvoice"]</a>
+        </div>
+
+        <div class="col-3">
+            <a asp-action="DeleteInvoice" asp-route-id="@Model.Id" class="btn btn-outline-danger col-12">@localizer["delete"]</a>
+        </div>      
+    </div>
+    <br />
+    <br />
+    <div class="row justify-content-center">
+        <a asp-controller="Invoice" asp-action="ConfirmInvoiceForCustomrt" class="btn btn-outline-info col-5">@localizer["finish"]</a>
+    </div>
+   
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

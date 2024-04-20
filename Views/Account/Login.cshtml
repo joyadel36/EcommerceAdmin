@@ -1,0 +1,47 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model WebApplication1.ViewModels.LogInAuthViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="row  justify-content-center ">
+    <div class="col-7 mt-3 mx-auto border border-top-0 border-primary-subtle">
+        <h1 class="text-center">@localizer["login"]</h1>
+        <hr class ="col-6  mx-auto" />
+        <form asp-action="Login" >
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group"> 
+                <label asp-for="UserName" class="control-label">@localizer["email"]</label>
+                <input asp-for="UserName" class="form-control"  />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">@localizer["password"]</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <div class="form-group  pb-2">
+                <input type="submit" value=@localizer["login"] class="btn btn-primary col-10  mx-auto d-block " />
+            </div>
+        </form>
+        <div class="pb-2">
+            <a asp-controller="Account" asp-action="Register" class="btn btn-primary col-10  mx-auto d-block ">@localizer["register"]</a>
+        </div>
+    </div>
+
+   
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

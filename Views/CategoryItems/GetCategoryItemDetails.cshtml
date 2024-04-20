@@ -1,0 +1,61 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model WebApplication1.ViewModels.CategoryItemViewModel
+
+@{
+    ViewData["Title"] = "GetCategoryItemDetails";
+}
+
+
+<div class="row justify-content-center ">
+    <div class="col-9 mt-3 mx-auto border border-top-0 border-primary-subtle">
+        <h1 class="text-center">@localizer["itemdetails"]</h1>
+        <div class="mx-auto" >
+        @{
+            string base64Image = Convert.ToBase64String(@Model.dbImage);
+            string imageSrc = string.Format("data:image/png;base64,{0}", base64Image);
+        }
+        <img src="@imageSrc" class="rounded mx-auto d-block" />
+    </div>
+    <dl >
+        <dt>
+            @localizer["itemname"]
+        </dt>
+        <dd>
+            @localizer["n"+@Model.ItemName+@Model.Id]
+        </dd>
+        <dt >
+            @localizer["itemdescription"]
+        </dt>
+        <dd>
+            
+                @localizer["d"+ @Model.ItemDescription+@Model.Id]
+        </dd>
+        <dt>
+            @localizer["isavailable"]
+        </dt>
+        <dd >
+            @Model.IsAvailable
+        </dd>
+        <dt>
+            @localizer["discount"]
+        </dt>
+        <dd >
+            @Model.Discount
+        </dd>
+        <dt>
+            @localizer["price"]
+        </dt>
+        <dd>
+            @Model.Price
+        </dd>
+       
+      
+    </dl>
+</div>
+</div>
+<div>
+    <a asp-action="EditCategoryItem" asp-route-id="@Model?.Id" class="btn btn-outline-info">@localizer["edit"]</a>
+</div>

@@ -1,0 +1,82 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model WebApplication1.Models.Customers
+
+@{
+    ViewData["Title"] = "EditCustomer";
+}
+
+
+
+<div class="row justify-content-center ">
+    <div class="col-9 mt-3 mx-auto border border-top-0 border-primary-subtle">
+        <h1 class="text-center">@localizer["editcustomer"]</h1>
+        <hr class="col-6  mx-auto" />
+        <form asp-action="EditCustomer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">@localizer["firstname"]</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">@localizer["lastname"]</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="City" class="control-label">@localizer["city"]</label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Region" class="control-label">@localizer["region"]</label>
+                <input asp-for="Region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Street" class="control-label">@localizer["street"]</label>
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="BuildingNumber" class="control-label">@localizer["buildingnumber"]</label>
+                <input asp-for="BuildingNumber" class="form-control" />
+                <span asp-validation-for="BuildingNumber" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label">@localizer["phonenumber"]</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">@localizer["email"]</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <br />
+            <br />
+            <div class="form-group pb-2">
+                <input type="submit" value=@localizer["update"] class="btn btn-primary col-10  mx-auto d-block " />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetAllCustomers" class="btn btn-outline-info">@localizer["back"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

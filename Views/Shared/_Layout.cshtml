@@ -1,0 +1,178 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @* two minuts time out *@
+    @if (User.Identity.IsAuthenticated)
+    {
+       
+        
+          <script>
+            var idleTime = 0;
+            var idleInterval = setInterval(timerIncrement, 60000);
+            $(document).ready(function () {
+                idleInterval = setInterval(timerIncrement,60000); 
+
+                $(this).mousemove(function (e) {
+                    idleTime = 0;
+                });
+                $(this).keypress(function (e) {
+                    idleTime = 0;
+                });
+            });
+
+            function timerIncrement() {
+                idleTime++;
+                if (idleTime >= 2) {
+                    clearInterval(idleInterval);
+                    idleTime = 0;
+                    confirmLogout();
+                }
+
+            }
+
+
+            // Show confirmation dialog to the user
+            function confirmLogout() {
+                if (confirm('You have been inactive for 2 minutes. Do you want to LogOut?')) {
+                    // Logout the user
+                    logoutUser();
+                } else {
+                    idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+                }
+            }
+
+            // Logout the user
+            function logoutUser() {
+                // Call the logout action from the AccountController
+                fetch('/Account/Logout', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert('Logged out successfully.');
+                            // Redirect to the logout page or any other action
+                            window.location.href = '/Account/Login';  // Redirect to Register action in AccountController
+                        } else {
+                            alert('Error logging out.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error logging out.');
+                    });
+            }
+
+        </script> 
+    }
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @if (CultureInfo.CurrentCulture.Name.StartsWith("ar"))
+    {
+        <link rel="stylesheet"
+              href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+              integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe"
+              crossorigin="anonymous" />
+        <style>
+            table {
+                direction: rtl;
+            }
+        </style>
+    }
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Home Page";
+    }
+
+ 
+
+ 
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light border-bottom box-shadow mb-3" style="background-color:lightblue">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@localizer["admin"]</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-md-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@localizer["home"]</a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="GetAllCategories">@localizer["category"]</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="CategoryItems" asp-action="CreateCategoryItem">@localizer["categoryitem"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="GetAllCustomers">@localizer["customers"]</a>
+                        </li>
+                      
+                    </ul>
+                    <ul class="navbar-nav">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <label>@localizer["hello"],@User.Identity.Name &nbsp;</label>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">@localizer["logout"]</a>
+                            </li>
+
+
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">@localizer["login"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">@localizer["register"]</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div>
+                    <partial name="_SelectLangPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

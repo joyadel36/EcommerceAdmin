@@ -1,0 +1,99 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model WebApplication1.ViewModels.CategoryItemViewModel
+
+@{
+    SelectList Categories = new SelectList(ViewBag.Catigories, "Id", "CategoryName");
+
+    ViewData["Title"] = "CreateCategoryItem";
+}
+
+
+
+
+
+<div class="row justify-content-center ">
+    <div class="col-9 mt-3 mx-auto border border-top-0 border-primary-subtle">
+        <h1 class="text-center">@localizer["createcategoryitem"]</h1>
+        <hr class="col-6  mx-auto" />
+        <form asp-action="CreateCategoryItem" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label">@localizer["enitemname"]</label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="ArItemName" class="control-label">@localizer["aritemname"]</label>
+                <input asp-for="ArItemName" class="form-control" />
+                <span asp-validation-for="ArItemName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="ItemDescription" class="control-label">@localizer["enitemdescription"]</label>
+                <input asp-for="ItemDescription" class="form-control" />
+                <span asp-validation-for="ItemDescription" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="ArItemDescription" class="control-label">@localizer["aritemdescription"]</label>
+                <input asp-for="ArItemDescription" class="form-control" />
+                <span asp-validation-for="ArItemDescription" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsAvailable" />
+                    @localizer["isavailable"]
+                </label>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label">@localizer["discount"]</label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">@localizer["price"]</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label">@localizer["category"]</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@Categories"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <br />
+            <div>
+                <label>@localizer["image"] </label>
+                <input type="file" asp-for="clientFile" onchange="loadFile(event)" />
+                <img id="myImg" height="200" />
+            </div>
+            <br />
+            <br />
+            <div class="form-group pb-2">
+                <input type="submit" value="@localizer["create"]" class="btn btn-primary col-10  mx-auto d-block " />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var loadFile = function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var myImg = document.getElementById('myImg');
+                myImg.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}

@@ -1,0 +1,79 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model IEnumerable<WebApplication1.Models.Customers>
+
+@{
+    ViewData["Title"] = "GetAllCustomers";
+
+  
+
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+
+<br/>
+<form class="d-flex" role="search" action="@Url.Action("GetAllCustomers", "Customers")" method="post">
+    <input class="form-control me-2" type="search" name="query" placeholder=@localizer["searchname"] aria-label=@localizer["searchname"]>
+    <button class="btn btn-outline-info" type="submit">@localizer["search"]</button>
+</form>
+</div>
+<br />
+<div class="row d-flex justify-content-between">
+<div class="fs-2 col-md-3 ">@localizer["allcustomers"]</div>
+ <a asp-action="CreateCustomer" class="btn btn-outline-primary text-Center col-3"> @localizer["createcustomer"]</a>
+  
+ <div/>
+
+<br />
+<div class="row">
+<table class="table border border-primary-subtle">
+    <thead>
+        <tr>
+            <th>
+                        @localizer["customername"]
+            </th>
+            <th>
+                        @localizer["city"]
+            </th>
+
+            <th>
+                        @localizer["phonenumber"]
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+                <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                </td>
+
+                <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+
+                <td>
+                        <a asp-action="EditCustomer" asp-route-id="@item.ID" class="btn btn-outline-primary">@localizer["edit"]</a> &nbsp;
+                        <a asp-action="GetCustomerById" asp-route-id="@item.ID" class="btn btn-outline-dark">@localizer["details"]</a>&nbsp;
+                        <a asp-action="DeleteCustomer" asp-route-id="@item.ID" class="btn btn-outline-danger">@localizer["delete"]</a>&nbsp;
+                        <a asp-controller="Invoice" asp-action="CreateInvoiceForCustomer" asp-route-id="@item.ID" class="btn btn-outline-primary">@localizer["createinvoice"]</a> &nbsp;
+
+                </td>
+            </tr>
+                }
+    </tbody>
+</table>
+</div>
+</div>
+
+</div>

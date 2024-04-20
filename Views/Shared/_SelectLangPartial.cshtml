@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer localizer
+@inject IOptions<RequestLocalizationOptions> locOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = locOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = @c.NativeName.Split(" ")[0] })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+}
+
+<style>
+    /* Add some styling to the language selection dropdown */
+    #selectLanguage {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    select {
+        padding: 8px 12px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        /* Optional: Add a little arrow to the dropdown */
+        select:after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+</style>
+
+<div title="@localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
+    <form id="selectLanguage" method="POST" asp-controller="Home" asp-action="SetLanguage"
+          asp-route-returnUrl="@returnUrl">
+        <select name="culture"
+                onchange="this.form.submit();"
+                asp-for="@requestCulture.RequestCulture.UICulture.Name"
+                asp-items="cultureItems">
+        </select>
+    </form>
+</div>

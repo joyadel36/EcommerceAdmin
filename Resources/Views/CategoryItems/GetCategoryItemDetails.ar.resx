@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="d315amn82" xml:space="preserve">
+    <value> 315AMN8 82XQ00BNED، ايه ام دي رايزن 5 7520U، شاشة مقاس 15.6 بوصة، دقة FHD، سعة 512 جيجا SSD، رام 8 جيجا، كارت شاشة ايه ام دي راديون 610M مدمج، ويندوز 11 - رمادي</value>
+  </data>
+  <data name="discount" xml:space="preserve">
+    <value>الخصم</value>
+  </data>
+  <data name="dlaptop1" xml:space="preserve">
+    <value> 15 3520، انتل كور i5-1235U، هارد M.2 PCIe NVMe SSD سعة 256 جيجا، 8 جيجا رام، شاشة بدقة FHD مقاس 15.6 بوصة بمعدل تحديث 120 هرتز، كارت شاشة انتل UHD جرافيكس، ويندوز 11 - اسود</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="image" xml:space="preserve">
+    <value>صورة المنتج</value>
+  </data>
+  <data name="isavailable" xml:space="preserve">
+    <value>متاح</value>
+  </data>
+  <data name="itemdescription" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="itemdetails" xml:space="preserve">
+    <value>تفاصيل المنتج</value>
+  </data>
+  <data name="itemname" xml:space="preserve">
+    <value>الاسم </value>
+  </data>
+  <data name="ndell1" xml:space="preserve">
+    <value>لاب توب ديل انسبيرون</value>
+  </data>
+  <data name="nlenovo2" xml:space="preserve">
+    <value>لاب توب لينوفو </value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="nrealme3" xml:space="preserve">
+    <value>ريلمي C55</value>
+  </data>
+  <data name="d256gb,3" xml:space="preserve">
+    <value>سعة 256 جيجا، رام 8 جيجا، بشريحتين، شبكة 4G LTE - ريني نايت</value>
+  </data>
+  <data name="nrealme4" xml:space="preserve">
+    <value>ريلمي C53</value>
+  </data>
+  <data name="d256gb,4" xml:space="preserve">
+    <value>سعة 256 جيجا، رام 8 جيجا، بشريحتين، شبكة 4G LTE - ريني نايت</value>
+  </data>
+  <data name="nfresh5" xml:space="preserve">
+    <value>مبرد مياه فريش</value>
+  </data>
+  <data name="dfresh5" xml:space="preserve">
+    <value> ساخن وبارد، رمادي - FW-17VFD</value>
+  </data>
+  <data name="ntornado6" xml:space="preserve">
+    <value>ميكروويف تورنيدو</value>
+  </data>
+  <data name="d256" xml:space="preserve">
+    <value> 25 لتر، 900 وات، اسود - TM-25MK</value>
+  </data>
+  <data name="nlg7" xml:space="preserve">
+    <value>تلفزيون سمارت ال جي </value>
+  </data>
+  <data name="d557" xml:space="preserve">
+    <value> 55 بوصة LED، دقة 4K UHD، بريسيفر داخلي - 55UR78006LL</value>
+  </data>
+  <data name="ntv8" xml:space="preserve">
+    <value>تلفزيون سامسونج</value>
+  </data>
+  <data name="dsamsung8" xml:space="preserve">
+    <value>سمارت 43 بوصة LED بدقة FHD مع رسيفر داخلي - UA43T5300AUXEG</value>
+  </data>
+  <data name="nlkjlj9" xml:space="preserve">
+    <value>lk;k;k</value>
+  </data>
+  <data name="deaeaa9" xml:space="preserve">
+    <value>rssxsr</value>
+  </data>
+  <data name="nlkjlj10" xml:space="preserve">
+    <value>lk;k;k</value>
+  </data>
+  <data name="deaeaa10" xml:space="preserve">
+    <value>rssxsr</value>
+  </data>
+  <data name="nlg11" xml:space="preserve">
+    <value>تلفزيون سمارت ال جي</value>
+  </data>
+  <data name="d6511" xml:space="preserve">
+    <value> 65 بوصة LED، دقة 4K UHD، بريسيفر داخلي - 65UR78006LL</value>
+  </data>
+  <data name="nlg12" xml:space="preserve">
+    <value>تلفزيون ال جي55</value>
+  </data>
+  <data name="d5512" xml:space="preserve">
+    <value> 55 بوصة LED، دقة 4K UHD، بريسيفر داخلي - 55UR78006LL</value>
+  </data>
+</root>

@@ -1,0 +1,66 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model IEnumerable<WebApplication1.ViewModels.CategoryItemViewModel>
+
+@{
+    ViewData["Title"] = "GetAllCategoryItems";
+}
+
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <h1 class="text-center">@localizer["itemsofcategory"]</h1>
+    </div>
+    <br />
+    <div class="row d-flex flex-wrap justify-content-center">
+@foreach (var item in Model) {
+
+
+            <div class="card col-md-3 col-sm-5 p-1 m-2">
+
+                @{
+                    string base64Image = Convert.ToBase64String(item.dbImage);
+                    string imageSrc = string.Format("data:image/png;base64,{0}", base64Image);
+                }
+                <img src="@imageSrc" class="card-img-top" />
+                <div class="card-body">
+
+                    <h5 class="card-title">  @localizer["n" +item.ItemName +item.Id]</h5>
+                    <p class="card-text">
+                        <div>
+
+                            @localizer["isavailable"]
+                            @Html.DisplayFor(modelItem => item.IsAvailable)
+
+                        </div>
+                        <div>
+
+                            @localizer["price"]
+                            @Html.DisplayFor(modelItem => item.Price)
+
+                        </div>
+
+
+                    </p>
+                </div>
+                
+                    <a asp-action="EditCategoryItem" asp-route-id="@item.Id" class="btn btn-outline-primary">@localizer["edit"]</a> &nbsp;
+                    <a asp-action="GetCategoryItemDetails" asp-route-id="@item.Id" class="btn btn-outline-dark">@localizer["details"]</a>&nbsp;
+                    <a asp-action="DeleteCategoryItem" asp-route-id="@item.Id" class="btn btn-outline-danger">@localizer["delete"]</a>
+
+                
+
+            </div>
+}
+</div>
+
+<br />
+<br />
+<div class="row justify-content-end">
+    <a asp-action="CreateCategoryItem" class="btn btn-outline-primary col-3">@localizer["createcategory"] </a>
+
+</div>
+</div>

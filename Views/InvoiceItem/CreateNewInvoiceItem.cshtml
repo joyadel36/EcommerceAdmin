@@ -1,0 +1,165 @@
+﻿﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+@model WebApplication1.ViewModels.InvoiceItemViewModel
+
+@{
+    ViewData["Title"] = "CreateNewInvoiceItem";
+}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="container"> 
+    <div class=" row ">
+        <form asp-action="CreateNewInvoiceItem" class="d-flex align-items-end justify-content-between">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group col-3">
+                <label asp-for="CategoryId" class="control-label ">@localizer["categoryname"]</label>
+
+                <select asp-for="CategoryId" class="form-control" onchange="GetData(CategoryId.value)">
+                    <option disabled selected>None</option> 
+                    @foreach (var category in (List<Category>)ViewBag.Catigories)
+                    {
+                        <option value="@category.Id">@category.CategoryName </option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="form-group col-3">
+                <label asp-for="ItemId" class="control-label">@localizer["additem"]</label>
+                <select asp-for="ItemId" class="form-control">
+                     <option disabled selected>None</option> </select>
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>
+          <br />
+            <div class="form-group col-3 ">
+                <input type="submit" value=@localizer["additem"] class="btn btn-primary col-12" />
+            </div>
+        </form>
+    </div>
+
+<br />
+<div class="row">
+@foreach (var item in (List<InvoiceItem>)ViewBag.Inviceitems)
+{
+
+    <div class="mb-3 border border-primary-subtle p-1">
+
+       <div class="row justify-content-around ">
+                    <div class="col-md-5  col-sm-12">
+                        <dl>
+                            <dt >
+                                @localizer["itemname"]
+                            </dt>
+                            <dd >
+                                @localizer["n" + item.categoryItem.ItemName + item.categoryItem.Id]
+                            </dd>
+                        </dl>
+
+                    </div>
+                    <div class="col-md-5  col-sm-12">
+                        <dl>
+                            <dt >
+                                @localizer["totalprice"]
+                            </dt>
+                            <dd >
+                                @Html.DisplayFor(modelItem => item.TotalPrice)
+                            </dd>
+                        </dl>
+                    </div>
+        </div>
+
+       <div class="row justify-content-around  align-items-end">
+                    <div class="col-md-5 col-sm-12">
+
+                        <dl>
+                            <dt >
+                                @localizer["amount"]
+                            </dt>
+                            <dd >
+                                <a asp-action="AmountPlus" asp-route-id="@item.ItemId" class="btn btn-link px-2">
+                                    <i class="fas fa-solid fa-plus-circle fa-lg"></i>
+                                </a>
+                                <span> @Html.DisplayFor(modelItem => item.Amount)</span>
+
+                                <a asp-action="AmountMinus" asp-route-id="@item.ItemId" class="btn btn-link px-2">
+                                    <i class="fas fa-solid fa-minus-circle fa-lg"></i>
+                                </a>
+                            </dd>
+                        </dl>
+ 
+                    </div>
+                    <div class="col-md-5  col-sm-12">
+
+                        <dl>
+                            <dt>
+                                @localizer["discount"]
+                            </dt>
+                            <dd>
+                                <a asp-action="DiscountPlus" asp-route-id="@item.ItemId" class="btn btn-link px-2">
+                                    <i class="fas fa-solid fa-plus-circle fa-lg"></i>
+                                </a>
+                                <span> @Html.DisplayFor(modelItem => item.Discount)</span>
+
+                                <a asp-action="DiscountMinus" asp-route-id="@item.ItemId" class="btn btn-link px-2">
+                                    <i class="fas fa-solid fa-minus-circle fa-lg"></i>
+                                </a>
+                            </dd>
+                        </dl>
+
+                      
+                      
+                    </div>              
+       </div>
+       
+        <div class=" row justify-content-end">
+           <a asp-action="DeleteInvoiceItem" asp-route-id="@item.ItemId" class="btn btn-link px-2 col-1">
+           <i class="fas  fa-trash  fa-lg" style="color: #e60f19;"></i>
+           </a>
+       </div>
+    </div>
+        
+    
+}
+ </div>
+    <br />
+<div class="row justify-content-end">
+        <a asp-controller="Invoice" asp-action="ComeFromInvoiceItems" class="btn btn-outline-info col-3">@localizer["finish"]</a>
+</div>
+<span id="result" class="text-danger"></span>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function GetData(id) {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("LanguageOfAllCategoryItemsNames")",
+                data: "Json",
+                data: { Catigoryid: id },
+                success: function (data) {
+
+                    var dropdown = $('#ItemId');
+                    dropdown.empty(); // Clear existing options
+                    $.each(data, function (index, item) {
+
+                        dropdown.append($('<option></option>').attr('value', item.itemId).text(item.itemName));
+                    });
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Status: ", textStatus);  // Log the status
+                    console.error("Error: ", errorThrown);  // Log the error message
+                    $('#result').html("Error: " + errorThrown); // Display the error message
+                }
+            });
+        }
+
+
+    </script>
+ 
+}
+
+
