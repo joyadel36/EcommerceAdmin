@@ -59,8 +59,8 @@ namespace WebApplication1.Controllers
                     bool createSuccess = _Category.CreateCategory(TempCtegory);
                     if (createSuccess)
                     {
-                        SetLocalizedValue(_enResourcePath, Newcategory.CategoryName.Split(" ")[0].ToLower(), Newcategory.CategoryName);
-                        SetLocalizedValue(_arResourcePath, Newcategory.CategoryName.Split(" ")[0].ToLower(), Newcategory.ArCategoryName);
+                        SetLocalizedValue(_enResourcePath, "n"+Newcategory.CategoryName.Split(" ")[0].ToLower(), Newcategory.CategoryName);
+                        SetLocalizedValue(_arResourcePath,"n"+Newcategory.CategoryName.Split(" ")[0].ToLower(), Newcategory.ArCategoryName);
 
                         return RedirectToAction("GetAllCategories");
                     }
@@ -110,8 +110,8 @@ namespace WebApplication1.Controllers
                     bool EditSuccess = _Category.EditCategory(Id, TempCtegory);
                     if (EditSuccess)
                     {
-                        SetLocalizedValue(_enResourcePath, Editcategory.CategoryName.Split(" ")[0].ToLower(), Editcategory.CategoryName);
-                        SetLocalizedValue(_arResourcePath, Editcategory.CategoryName.Split(" ")[0].ToLower(), Editcategory.ArCategoryName);
+                        SetLocalizedValue(_enResourcePath, "n"+Editcategory.CategoryName.Split(" ")[0].ToLower(), Editcategory.CategoryName);
+                        SetLocalizedValue(_arResourcePath, "n"+Editcategory.CategoryName.Split(" ")[0].ToLower(), Editcategory.ArCategoryName);
 
                         return RedirectToAction("GetAllCategories");
                     }

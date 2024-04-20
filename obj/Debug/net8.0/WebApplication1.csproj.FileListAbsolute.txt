@@ -305,3 +305,4 @@ E:\WorkProject\ecommerce\WebApplication1\obj\Debug\net8.0\WebApplication1.Resour
 E:\WorkProject\ecommerce\WebApplication1\obj\Debug\net8.0\WebApplication1.Resources.Views.InvoiceItem.CreateNewInvoiceItem.en-us.resources
 E:\WorkProject\ecommerce\WebApplication1\obj\Debug\net8.0\WebApplication1.Resources.Views.Invoice.FinishAddingItemsTotheCustomerInvoice.ar.resources
 E:\WorkProject\ecommerce\WebApplication1\obj\Debug\net8.0\WebApplication1.Resources.Views.Invoice.FinishAddingItemsTotheCustomerInvoice.en-us.resources
+E:\WorkProject\ecommerce\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json

@@ -120,16 +120,16 @@
   <data name="action" xml:space="preserve">
     <value>العمليات</value>
   </data>
-  <data name="mobils" xml:space="preserve">
+  <data name="nmobils" xml:space="preserve">
     <value>موبايل و تابلت</value>
   </data>
-  <data name="small" xml:space="preserve">
+  <data name="nsmall" xml:space="preserve">
     <value>اجهزة منزلية صغيرة</value>
   </data>
-  <data name="tvs" xml:space="preserve">
+  <data name="ntvs" xml:space="preserve">
     <value>تلفزيونات</value>
   </data>
-  <data name="laptops" xml:space="preserve">
+  <data name="nlaptops" xml:space="preserve">
     <value>لاب توب و كمبيوتر</value>
   </data>
   <data name="allitems" xml:space="preserve">

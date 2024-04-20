@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers
                 _Session.CreateSession(session);
 
                 await _SIManager.SignInAsync(user, true);
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -96,7 +96,7 @@ namespace WebApplication1.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Home", "Index");
+                            return RedirectToAction( "Index", "Home");
                         }
 
 
@@ -123,7 +123,7 @@ namespace WebApplication1.Controllers
             string UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             _Session.DeleteSessions(UserId);
             await _SIManager.SignOutAsync();
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("Index", "Home");
         }
 
 

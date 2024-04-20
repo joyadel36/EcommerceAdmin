@@ -202,14 +202,14 @@ namespace WebApplication1.Controllers
                 {
                     foreach (Category c in catigories)
                     {
-                        c.CategoryName = GetValue(arResourcePath, c.CategoryName);
+                        c.CategoryName = GetValue(arResourcePath, "n"+c.CategoryName);
                     }
                 }
                 else
                 {
                     foreach (Category c in catigories)
                     {
-                        c.CategoryName = GetValue(enResourcePath, c.CategoryName);
+                        c.CategoryName = GetValue(enResourcePath,"n"+c.CategoryName);
                     }
                 }
             }

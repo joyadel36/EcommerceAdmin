@@ -120,16 +120,16 @@
   <data name="action" xml:space="preserve">
     <value>Actions</value>
   </data>
-  <data name="mobils" xml:space="preserve">
+  <data name="nmobils" xml:space="preserve">
     <value>Mobiles &amp; Tablets</value>
   </data>
-  <data name="small" xml:space="preserve">
+  <data name="nsmall" xml:space="preserve">
     <value>Small Home Appliances</value>
   </data>
-  <data name="tvs" xml:space="preserve">
+  <data name="ntvs" xml:space="preserve">
     <value>TVs</value>
   </data>
-  <data name="laptops" xml:space="preserve">
+  <data name="nlaptops" xml:space="preserve">
     <value>Laptops &amp; PCs</value>
   </data>
   <data name="allitems" xml:space="preserve">
