@@ -18,7 +18,7 @@
     {
             <div class="card col-md-3 col-sm-5 p-1 m-2">
                 <div class="card-header text-center">
-                    @localizer[item.CategoryName]
+                    @localizer["n"+item.CategoryName]
                 </div>
                 <a asp-action="EditCategory" asp-route-id="@item.Id" class="btn btn-outline-primary text-center mt-1 mb-1">@localizer["update"] </a>
                 <a asp-controller="CategoryItems" asp-action="GetAllCategoryItems" asp-route-id="@item.Id" class="btn btn-outline-dark text-center mb-1">@localizer["allitems"]</a>

@@ -90,8 +90,8 @@ namespace WebApplication1.Controllers
             CategoryViewModel categorymodel = new CategoryViewModel();
          
             categorymodel.Id = category.Id;
-            categorymodel.ArCategoryName = GetValue(_arResourcePath, category.CategoryName);
-            categorymodel.CategoryName = GetValue(_enResourcePath, category.CategoryName);
+            categorymodel.ArCategoryName = GetValue(_arResourcePath, "n"+category.CategoryName);
+            categorymodel.CategoryName = GetValue(_enResourcePath, "n"+category.CategoryName);
             
             return View(categorymodel);
         }
