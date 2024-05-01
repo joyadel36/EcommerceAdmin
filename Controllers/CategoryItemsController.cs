@@ -144,7 +144,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult EditCategoryItem(int Id)
         {
-            ViewBag.Catigories = _Category.GetAllCategory();
+            ViewBag.Catigories = LanguageOfAllCategoriesNames();
             CategoryItem? DBcategoryItem = _CategoryItem.GetCategoryItemByID(Id);
 
             CategoryItemViewModel VMCategoryItem = ConvertCategoryitemDbToVm(DBcategoryItem);
@@ -154,7 +154,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult EditCategoryItem(int Id, CategoryItemViewModel EditcategoryItem)
         {
-            ViewBag.Catigories = _Category.GetAllCategory();
+            ViewBag.Catigories = LanguageOfAllCategoriesNames();
 
             if (ModelState.IsValid)
             {
@@ -308,8 +308,9 @@ namespace WebApplication1.Controllers
 
         private List<Category>? LanguageOfAllCategoriesNames()
         {
-            List<Category>? catigories = _Category.GetAllCategory();
-            if (!catigories.IsNullOrEmpty())
+            List<Category>? Dbcatigories = _Category.GetAllCategory();
+            List<Category> catigories = new List<Category>();
+            if (!Dbcatigories.IsNullOrEmpty())
             {
                 string enResourcePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Resources", "Views", "Categories", "GetAllCategories.en-us.resx");
                 string arResourcePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Resources", "Views", "Categories", "GetAllCategories.ar.resx");
@@ -317,16 +318,24 @@ namespace WebApplication1.Controllers
 
                 if (lang == "ar")
                 {
-                    foreach (Category c in catigories)
+
+                    foreach (Category c in Dbcatigories)
                     {
-                        c.CategoryName = GetValue(arResourcePath, "n"+c.CategoryName);
+                        Category newcategory = new Category();
+                        newcategory.Id = c.Id;
+                        newcategory.CategoryName = GetValue(arResourcePath, "n" + c.CategoryName);
+                        catigories.Add(newcategory);
                     }
                 }
                 else
                 {
-                    foreach (Category c in catigories)
+                    foreach (Category c in Dbcatigories)
                     {
-                        c.CategoryName = GetValue(enResourcePath, "n"+c.CategoryName);
+                        Category newcategory = new Category();
+                        newcategory.Id = c.Id;
+                        newcategory.CategoryName = GetValue(enResourcePath, "n" + c.CategoryName);
+                        catigories.Add(newcategory);
+
                     }
                 }
             }

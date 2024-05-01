@@ -37,7 +37,7 @@ namespace WebApplication1.Repositories
             Sessions? tempsession = _Context.Sessions.Where(s => s.ApplicationUserId == UserId).FirstOrDefault();
             if (tempsession != null)
             {
-                _Context.Sessions.Update(ESession);
+                tempsession.LastSessionTime = ESession.LastSessionTime;
                 _Context.SaveChanges();
 
             }

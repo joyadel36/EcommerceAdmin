@@ -191,8 +191,9 @@ namespace WebApplication1.Controllers
 
         private List<Category>? LanguageOfAllCategoriesNames()
         {
-            List<Category>? catigories = _Category.GetAllCategory();
-            if (!catigories.IsNullOrEmpty())
+            List<Category>? Dbcatigories = _Category.GetAllCategory();
+            List<Category> catigories = new List<Category>();
+            if (!Dbcatigories.IsNullOrEmpty())
             {
                 string enResourcePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Resources", "Views", "Categories", "GetAllCategories.en-us.resx");
                 string arResourcePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Resources", "Views", "Categories", "GetAllCategories.ar.resx");
@@ -200,16 +201,24 @@ namespace WebApplication1.Controllers
 
                 if (lang == "ar")
                 {
-                    foreach (Category c in catigories)
+
+                    foreach (Category c in Dbcatigories)
                     {
-                        c.CategoryName = GetValue(arResourcePath, "n"+c.CategoryName);
+                        Category newcategory = new Category();
+                        newcategory.Id = c.Id;
+                        newcategory.CategoryName = GetValue(arResourcePath, "n"+c.CategoryName);
+                        catigories.Add(newcategory);
                     }
                 }
                 else
                 {
-                    foreach (Category c in catigories)
-                    {
-                        c.CategoryName = GetValue(enResourcePath,"n"+c.CategoryName);
+                    foreach (Category c in Dbcatigories)
+                    { 
+                        Category newcategory = new Category();
+                        newcategory.Id = c.Id;
+                        newcategory.CategoryName = GetValue(enResourcePath, "n" + c.CategoryName);
+                        catigories.Add(newcategory);
+
                     }
                 }
             }
@@ -229,7 +238,6 @@ namespace WebApplication1.Controllers
             List<ItemForInvoiceItemListViewModel> AllItemForInvoiceItemList = new List<ItemForInvoiceItemListViewModel>();
            
            var CategoryItems = _CategoryItem.GetAllCategoryItemsByCategoryId(Catigoryid);
-
             if (!CategoryItems.IsNullOrEmpty())
             {
                  string enResourcePath = Path.Combine(_hostingEnvironment.ContentRootPath, "Resources", "Views", "CategoryItems", "GetAllCategoryItems.en-us.resx");
@@ -245,9 +253,8 @@ namespace WebApplication1.Controllers
                     {
                         ItemForInvoiceItemListViewModel item = new ItemForInvoiceItemListViewModel();
 
-                        item.ItemId =c.Id;
-                        c.ItemName = GetValue(arResourcePath, "n"+c.ItemName+c.Id);
-                        item.ItemName = c.ItemName;
+                        item.ItemId = c.Id;
+                        item.ItemName = GetValue(arResourcePath, "n" + c.ItemName + c.Id); ;
                         AllItemForInvoiceItemList.Add(item);
                     }
                 }
@@ -258,8 +265,8 @@ namespace WebApplication1.Controllers
                        
                         ItemForInvoiceItemListViewModel item = new ItemForInvoiceItemListViewModel();
                         item.ItemId = c.Id;
-                        c.ItemName = GetValue(enResourcePath, "n"+ c.ItemName+ c.Id);
-                        item.ItemName = c.ItemName;
+                        item.ItemName = GetValue(enResourcePath, "n" + c.ItemName + c.Id);
+
                         AllItemForInvoiceItemList.Add(item);
 
                     }

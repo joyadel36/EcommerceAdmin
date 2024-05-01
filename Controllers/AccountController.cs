@@ -143,6 +143,8 @@ namespace WebApplication1.Controllers
             else
             {
                 if (
+                     (((DateTime.Now.Year) - (session.LastSessionTime.Year)) > 0)||
+                     (((DateTime.Now.Month) - (session.LastSessionTime.Month)) > 0)||
                     (((DateTime.Now.Day) - (session.LastSessionTime.Day)) > 0) ||
                     (((DateTime.Now.Hour) - (session.LastSessionTime.Hour)) >= 3) ||
                   (

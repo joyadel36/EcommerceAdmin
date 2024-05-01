@@ -38,7 +38,6 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-
         private string GetValue(string filePath, string key)
         {
             var doc = XDocument.Load(filePath);
@@ -85,10 +84,6 @@ namespace WebApplication1.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
